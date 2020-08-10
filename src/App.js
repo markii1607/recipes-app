@@ -20,6 +20,19 @@ class App extends Component {
     this.setState({recipes: data.recipes });
   }
 
+  // Will fire as soon as the component loads on the screen
+  componentDidMount = () => {
+    const json = localStorage.getItem("recipes");
+    const recipes = JSON.parse(json);
+    this.setState({ recipes });
+  }
+
+  //  will fire as soon as state is updated
+  componentDidUpdate = () => {
+    const recipes = JSON.stringify(this.state.recipes);
+    localStorage.setItem("recipes", recipes);
+  }
+
   render() {
     return (
       <div className="App">
